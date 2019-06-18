@@ -1,7 +1,21 @@
 # This is Git's per-user configuration file.
 [user]
-	name = David Kennedy
-	email = dave@dkennedy.org
+  name = David Kennedy
+  email = dave@dkennedy.org
 
 [core]
-	excludesFile = ~/.gitignore
+  editor = vim
+  excludesFile = ~/.gitignore
+
+[fetch]
+  prune = true
+
+[rebase]
+  autosquash = true
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+
+[color]
+  ui = auto
