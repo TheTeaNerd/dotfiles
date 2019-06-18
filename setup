@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ -L ~/.vimrc ]]; then
+    echo "✅ .vimrc"
+elif [[ -f ~/.vimrc ]]; then
+    echo "❌ .vimrc exists"
+else
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    echo "🛠 Linking .vimrc"
+    ln -s ${DIR}/vimrc ~/.vimrc || exit 1
+fi
