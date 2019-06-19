@@ -2,31 +2,27 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-if [[ -L ~/.vimrc ]]; then
-    echo "✅ .vimrc"
-elif [[ -f ~/.vimrc ]]; then
-    echo "❌ .vimrc exists"
-else
-    echo "🛠 Linking .vimrc"
-    ln -s ${DIR}/vimrc ~/.vimrc || exit 1
-fi
+function link_dotfile() {
+    local dotfile=$1
+    local link=~/.${dotfile}
+    local name
+    name=$(basename "${link}")
 
-if [[ -L ~/.gitignore ]]; then
-    echo "✅ .gitignore"
-elif [[ -f ~/.gitignore ]]; then
-    echo "❌ .gitignore exists"
-else
-    echo "🛠 Linking .gitignore"
-    ln -s ${DIR}/gitignore ~/.gitignore || exit 1
-fi
+    if [[ -L $link ]]; then
+        echo "✅ ${name}"
+    elif [[ -f $link ]]; then
+        echo "❌ ${name} exists"
+    else
+        echo "🛠  Linking ${name}"
+        ln -s "${DIR}/${dotfile}" "${link}" || exit 1
+    fi
+}
 
-if [[ -L ~/.gitconfig ]]; then
-    echo "✅ .gitconfig"
-elif [[ -f ~/.gitconfig ]]; then
-    echo "❌ .gitconfig exists"
-else
-    echo "🛠 Linking .gitconfig"
-    ln -s ${DIR}/gitconfig ~/.gitconfig || exit 1
-fi
+dotfiles=( vimrc gitignore gitconfig )
+for dotfile in "${dotfiles[@]}"
+do
+    link_dotfile "${dotfile}"
+done
 
+echo "🎉"
 exit 0
