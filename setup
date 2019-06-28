@@ -24,5 +24,7 @@ do
     link_dotfile "${dotfile}"
 done
 
+vim +PluginInstall +qall
+
 echo "🎉"
 exit 0
