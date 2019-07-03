@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
   name = David Kennedy
-  email = dave@dkennedy.org
+  email = david.kennedy@rotorvideos.com
 	signingkey = BDBC6499F762EA40
 
 [core]
