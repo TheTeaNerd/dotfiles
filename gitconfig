@@ -2,6 +2,7 @@
 [user]
   name = David Kennedy
   email = dave@dkennedy.org
+	signingkey = BDBC6499F762EA40
 
 [core]
   editor = vim
@@ -19,3 +20,5 @@
 
 [color]
   ui = auto
+[commit]
+	gpgsign = true
